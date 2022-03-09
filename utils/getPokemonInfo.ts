@@ -3,6 +3,10 @@ import { Pokemon } from "../interfaces";
 import { pokemonFormatter } from "./pokemonFormatter";
 
 export const getPokemonInfo = async (nameOrId: string) => {
-  const { data } = await pokeApi.get<Pokemon>(`/pokemon/${nameOrId}`);
-  return pokemonFormatter(data);
+  try {
+    const { data } = await pokeApi.get<Pokemon>(`/pokemon/${nameOrId}`);
+    return pokemonFormatter(data);
+  } catch (error) {
+    return null;
+  }
 };
